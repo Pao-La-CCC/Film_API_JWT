@@ -1,0 +1,40 @@
+* {
+    font-family : Verdana ;
+    font-size: 18px;
+}
+
+.form-Login {
+    background-color: rgb(243, 229, 203);
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+.form-Register {
+    background-color: rgb(24, 211, 24);
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+ span  {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.form-Login form div {
+    margin: auto;
+    padding: 10px;
+}
+
+.form-Login form div label{
+    margin: 15px;
+    display: block;
+    
+}
+
+.form-Login form div input{
+    font-size: 16px;
+}

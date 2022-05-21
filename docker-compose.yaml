@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+    backend:
+        container_name: backend
+        build:
+            context: ./app/backend
+            dockerfile: Dockerfile
+        ports:
+            - 8000:80
+        depends_on:
+            - database
+        volumes:
+            - ./app/backend/src:/var/www/html
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - '1234:80'
+        environment:
+            # demande le nom du server
+            - PMA_ARBITRARY=1
+            # Pour ne pas avoir à préciser le nom du server
+            # - PMA_HOST=database
+        depends_on:
+            - database
+
+    database:
+        container_name: maria-db
+        image: 'mariadb'
+        restart: always
+        ports:
+            - "8080:80"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: 'users_login'
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+
+
+
+            
+    frontend:
+        container_name: frontend
+        build:
+            context: ./app/frontend
+            dockerfile: Dockerfile
+        tty: true
+        volumes:
+            - ./app/frontend:/app/frontend
+        ports:
+            - 3000:3000
+        depends_on:
+            - backend
+   
